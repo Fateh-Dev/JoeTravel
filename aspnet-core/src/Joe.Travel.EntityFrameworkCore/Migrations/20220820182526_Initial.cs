@@ -1173,6 +1173,12 @@ namespace Joe.Travel.Migrations
                     Title = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
                     Difficulty = table.Column<int>(type: "integer", nullable: false),
+                    Rating = table.Column<double>(type: "double precision", nullable: false),
+                    Duration = table.Column<int>(type: "integer", nullable: false),
+                    Thumbnail = table.Column<byte[]>(type: "bytea", nullable: true),
+                    TripSize = table.Column<int>(type: "integer", nullable: false),
+                    DurationUnit = table.Column<int>(type: "integer", nullable: false),
+                    IsAchived = table.Column<bool>(type: "boolean", nullable: false),
                     GuideId = table.Column<Guid>(type: "uuid", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
@@ -1214,6 +1220,27 @@ namespace Joe.Travel.Migrations
                         name: "FK_AbpEntityPropertyChanges_AbpEntityChanges_EntityChangeId",
                         column: x => x.EntityChangeId,
                         principalTable: "AbpEntityChanges",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Image",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Url = table.Column<string>(type: "text", nullable: true),
+                    DescriptionRr = table.Column<string>(type: "text", nullable: true),
+                    PictureData = table.Column<byte[]>(type: "bytea", nullable: true),
+                    TripId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Image", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Image_Joe.Travel.Trips_TripId",
+                        column: x => x.TripId,
+                        principalTable: "Joe.Travel.Trips",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1577,6 +1604,11 @@ namespace Joe.Travel.Migrations
                 columns: new[] { "SubjectId", "SessionId", "Type" });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Image_TripId",
+                table: "Image",
+                column: "TripId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Joe.Travel.Trip_Activities_ActivityId",
                 table: "Joe.Travel.Trip_Activities",
                 column: "ActivityId");
@@ -1761,6 +1793,9 @@ namespace Joe.Travel.Migrations
 
             migrationBuilder.DropTable(
                 name: "IdentityServerPersistedGrants");
+
+            migrationBuilder.DropTable(
+                name: "Image");
 
             migrationBuilder.DropTable(
                 name: "Joe.Travel.Trip_Activities");

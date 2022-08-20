@@ -15,7 +15,21 @@ namespace Joe.Travel.Models
 
         public Difficulty Difficulty { get; set; }
 
+        public double Rating { get; set; }
+
+        public int Duration { get; set; }
+
+        public byte[] Thumbnail { get; set; }
+
+        public TripSize TripSize { get; set; }
+
+        public DurationUnit DurationUnit { get; set; }
+
+        public bool IsAchived { get; set; }
+
         public Guid GuideId { get; set; }
+
+        public ICollection<Image> Pictures { get; set; }
 
         public ICollection<TripActivity> Activities { get; set; }
 
@@ -141,7 +155,7 @@ namespace Joe.Travel.Models
             return Risks.Any(x => x.RiskId == riskId);
         }
 
-              //********************************* Included Stuff *********************************
+        //********************************* Included Stuff *********************************
         public void AddIncludedStuffs(Guid riskId)
         {
             Check.NotNull(riskId, nameof(riskId));
@@ -177,7 +191,8 @@ namespace Joe.Travel.Models
         {
             return IncludedStuffs.Any(x => x.IncludedStuffId == riskId);
         }
-            //********************************* Loging *********************************
+
+        //********************************* Loging *********************************
         public void AddLogings(Guid riskId)
         {
             Check.NotNull(riskId, nameof(riskId));
@@ -214,8 +229,7 @@ namespace Joe.Travel.Models
             return Logings.Any(x => x.LogingId == riskId);
         }
 
-        
-              //********************************* Not Allowed Stuff *********************************
+        //********************************* Not Allowed Stuff *********************************
         public void AddNotAllowedStuffs(Guid riskId)
         {
             Check.NotNull(riskId, nameof(riskId));
@@ -239,7 +253,8 @@ namespace Joe.Travel.Models
         public void RemoveAllNotAllowedStuffsExceptGivenIds(List<Guid> riskIds)
         {
             Check.NotNullOrEmpty(riskIds, nameof(riskIds));
-            NotAllowedStuffs.RemoveAll(x => !riskIds.Contains(x.NotAllowedStuffId));
+            NotAllowedStuffs
+                .RemoveAll(x => !riskIds.Contains(x.NotAllowedStuffId));
         }
 
         public void RemoveAllNotAllowedStuffs()
@@ -252,8 +267,7 @@ namespace Joe.Travel.Models
             return NotAllowedStuffs.Any(x => x.NotAllowedStuffId == riskId);
         }
 
-        
-              //********************************* Not Suitable For *********************************
+        //********************************* Not Suitable For *********************************
         public void AddNotSuitableFors(Guid riskId)
         {
             Check.NotNull(riskId, nameof(riskId));
@@ -277,7 +291,8 @@ namespace Joe.Travel.Models
         public void RemoveAllNotSuitableForsExceptGivenIds(List<Guid> riskIds)
         {
             Check.NotNullOrEmpty(riskIds, nameof(riskIds));
-            NotSuitableFors.RemoveAll(x => !riskIds.Contains(x.NotSuitableForId));
+            NotSuitableFors
+                .RemoveAll(x => !riskIds.Contains(x.NotSuitableForId));
         }
 
         public void RemoveAllNotSuitableFors()
@@ -290,8 +305,7 @@ namespace Joe.Travel.Models
             return NotSuitableFors.Any(x => x.NotSuitableForId == riskId);
         }
 
-        
-              //********************************* Included Stuff *********************************
+        //********************************* Included Stuff *********************************
         public void AddRequiredStuffs(Guid riskId)
         {
             Check.NotNull(riskId, nameof(riskId));

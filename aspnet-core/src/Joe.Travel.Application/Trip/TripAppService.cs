@@ -60,7 +60,6 @@ namespace Joe.Travel
             _includedStuffRepository = includedStuffRepository;
         }
 
-        [HttpPost]
         public async Task<PagedResultDto<TripDto>>
         GetListAsync(TripGetListInput input)
         {

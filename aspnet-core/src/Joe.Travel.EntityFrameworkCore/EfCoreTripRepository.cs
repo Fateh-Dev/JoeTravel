@@ -56,8 +56,9 @@ namespace TripStore.Trips
         {
             var dbContext = await GetDbContextAsync();
 
-            return (await GetDbSetAsync())
-                .Include(x => x.Activities)
+            return (
+            await GetDbSetAsync()
+            ) // .Include(x => x.Activities)
                 .Join(dbContext.Set<Guide>(),
                 trip => trip.GuideId,
                 guide => guide.Id,
@@ -67,8 +68,16 @@ namespace TripStore.Trips
                         Id = x.trip.Id,
                         Title = x.trip.Title,
                         Description = x.trip.Description,
-                        Difficulty = x.trip.Difficulty,
+                        Difficulty = x.trip.Difficulty.ToString(),
                         GuideName = x.guide.Firstname + " " + x.guide.Lastname,
+                        Rating = x.trip.Rating,
+                        Duration =
+                            x.trip.Duration.ToString() +
+                            " " +
+                            x.trip.DurationUnit.ToString() +
+                            ((x.trip.Duration != 1) ? "s" : ""),
+                        TripSize = x.trip.TripSize.ToString(),
+                        Thumbnail = x.trip.Thumbnail,
                         ActivityNames =
                             (
                             from TripActivity in x.trip.Activities

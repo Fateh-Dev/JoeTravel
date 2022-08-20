@@ -13,7 +13,15 @@ namespace Joe.Travel.Models
 
         public string GuideName { get; set; }
 
-        public Difficulty Difficulty { get; set; }
+        public double Rating { get; set; }
+
+        public string Duration { get; set; }
+
+        public byte[] Thumbnail { get; set; }
+
+        public string TripSize { get; set; }
+
+        public string Difficulty { get; set; }
 
         public string[] ActivityNames { get; set; }
 

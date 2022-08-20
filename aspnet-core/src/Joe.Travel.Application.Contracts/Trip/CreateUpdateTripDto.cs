@@ -5,18 +5,25 @@ namespace Joe.Travel
 {
     public class CreateUpdateTripDto
     {
-        [Required] 
+        [Required]
         public string Title { get; set; }
 
         [Required]
         public string Description { get; set; }
 
         [Required]
-        public Difficulty Difficulty { get; set; } = Difficulty.Easy;
+        public Difficulty Difficulty { get; set; }
+
+        public int Duration { get; set; }
+
+        public TripSize TripSize { get; set; }
+
+        public DurationUnit DurationUnit { get; set; }
 
         public Guid GuideId { get; set; }
 
         public string[] ActivityNames { get; set; }
+
         public string[] RiskNames { get; set; }
 
         public string[] IncludedStuffNames { get; set; }

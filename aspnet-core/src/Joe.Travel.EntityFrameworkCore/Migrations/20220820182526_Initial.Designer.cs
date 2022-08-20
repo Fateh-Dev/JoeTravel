@@ -13,7 +13,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Joe.Travel.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    [Migration("20220820132857_Initial")]
+    [Migration("20220820182526_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -130,6 +130,30 @@ namespace Joe.Travel.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Joe.Travel.Guides", (string)null);
+                });
+
+            modelBuilder.Entity("Joe.Travel.Models.Image", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("DescriptionRr")
+                        .HasColumnType("text");
+
+                    b.Property<byte[]>("PictureData")
+                        .HasColumnType("bytea");
+
+                    b.Property<Guid>("TripId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TripId");
+
+                    b.ToTable("Image");
                 });
 
             modelBuilder.Entity("Joe.Travel.Models.IncludedStuff", b =>
@@ -441,12 +465,21 @@ namespace Joe.Travel.Migrations
                     b.Property<int>("Difficulty")
                         .HasColumnType("integer");
 
+                    b.Property<int>("Duration")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("DurationUnit")
+                        .HasColumnType("integer");
+
                     b.Property<string>("ExtraProperties")
                         .HasColumnType("text")
                         .HasColumnName("ExtraProperties");
 
                     b.Property<Guid>("GuideId")
                         .HasColumnType("uuid");
+
+                    b.Property<bool>("IsAchived")
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -462,10 +495,19 @@ namespace Joe.Travel.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("LastModifierId");
 
+                    b.Property<double>("Rating")
+                        .HasColumnType("double precision");
+
+                    b.Property<byte[]>("Thumbnail")
+                        .HasColumnType("bytea");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("character varying(128)");
+
+                    b.Property<int>("TripSize")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -2517,6 +2559,15 @@ namespace Joe.Travel.Migrations
                     b.ToTable("AbpTenantConnectionStrings", (string)null);
                 });
 
+            modelBuilder.Entity("Joe.Travel.Models.Image", b =>
+                {
+                    b.HasOne("Joe.Travel.Models.Trip", null)
+                        .WithMany("Pictures")
+                        .HasForeignKey("TripId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Joe.Travel.Models.Trip", b =>
                 {
                     b.HasOne("Joe.Travel.Models.Guide", null)
@@ -2924,6 +2975,8 @@ namespace Joe.Travel.Migrations
                     b.Navigation("NotAllowedStuffs");
 
                     b.Navigation("NotSuitableFors");
+
+                    b.Navigation("Pictures");
 
                     b.Navigation("RequiredStuffs");
 

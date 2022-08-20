@@ -20,7 +20,7 @@ public class TravelApplicationAutoMapperProfile : Profile
          CreateMap<CreateUpdateActivityDto ,Activity>();
 
          CreateMap<Risk ,RiskDto>();
-         CreateMap<Risk ,RiskLookupDto>();
+         CreateMap<Risk ,RiskLookupDto>(); 
          CreateMap<CreateUpdateRiskDto ,Risk>();
 
          CreateMap<NotAllowedStuff ,NotAllowedStuffDto>();
