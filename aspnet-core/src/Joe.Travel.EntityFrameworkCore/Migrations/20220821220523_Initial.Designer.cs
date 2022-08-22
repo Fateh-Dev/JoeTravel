@@ -13,7 +13,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Joe.Travel.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    [Migration("20220820182526_Initial")]
+    [Migration("20220821220523_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -153,7 +153,7 @@ namespace Joe.Travel.Migrations
 
                     b.HasIndex("TripId");
 
-                    b.ToTable("Image");
+                    b.ToTable("Joe.Travel.Images", (string)null);
                 });
 
             modelBuilder.Entity("Joe.Travel.Models.IncludedStuff", b =>

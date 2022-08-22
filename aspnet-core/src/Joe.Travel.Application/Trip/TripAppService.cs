@@ -21,6 +21,8 @@ namespace Joe.Travel
 
         private readonly IRepository<Guide, Guid> _guideRepository;
 
+        // private readonly IRepository<Image, Guid> _imageRepository;
+
         private readonly IRepository<NotAllowedStuff, Guid>
             _notAllowedStuffRepository;
 
@@ -46,6 +48,7 @@ namespace Joe.Travel
             IRepository<Loging, Guid> logingepository,
             IRepository<IncludedStuff, Guid> includedStuffRepository,
             IRepository<RequiredStuff, Guid> requiredStuffRepository
+            // IRepository<Image, Guid> imageRepository
         )
         {
             _tripManager = tripManager;
@@ -58,6 +61,7 @@ namespace Joe.Travel
             _logingRepository = logingepository;
             _requiredStuffRepository = requiredStuffRepository;
             _includedStuffRepository = includedStuffRepository;
+            // _imageRepository = imageRepository;
         }
 
         public async Task<PagedResultDto<TripDto>>
@@ -80,6 +84,9 @@ namespace Joe.Travel
                 input.GuideId,
                 input.Description,
                 input.Difficulty,
+                // input.Duration,
+                // input.TripSize,
+                // input.DurationUnit,
                 input.ActivityNames,
                 input.RiskNames,
                 input.NotAllowedStuffNames,
@@ -231,5 +238,12 @@ namespace Joe.Travel
                 };
             return L;
         }
+
+        // public async Task<ListResultDto<ImageDto>> GetTripPictures()
+        // {
+        //     var el = await _imageRepository.GetListAsync();
+        //     return new ListResultDto<ImageDto>(ObjectMapper
+        //             .Map<List<Image>, List<ImageDto>>(el));
+        // }
     }
 }

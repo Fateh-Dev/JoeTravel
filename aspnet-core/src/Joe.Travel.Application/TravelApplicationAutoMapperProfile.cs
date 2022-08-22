@@ -51,5 +51,7 @@ public class TravelApplicationAutoMapperProfile : Profile
              )
          );
          CreateMap<CreateUpdateGuideDto ,Guide>();
+
+         CreateMap<Image ,ImageDto>();
     }
 }

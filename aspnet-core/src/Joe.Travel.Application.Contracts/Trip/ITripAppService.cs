@@ -38,5 +38,7 @@ namespace Joe.Travel
         GetRequierdStuffLookupAsync();
 
         Task<Lookups> GetLookupsAtOnceAsync();
+
+        // Task<ListResultDto<ImageDto>> GetTripPictures();
     }
 }

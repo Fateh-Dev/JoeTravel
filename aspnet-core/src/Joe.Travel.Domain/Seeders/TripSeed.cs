@@ -70,6 +70,10 @@ namespace Joe.Travel
             await SeedRisks();
             await SeedNotAllowedStuff();
             await SeedTrips();
+            await SeedIncluds();
+            await SeedLogings();
+            await SeedRequirements();
+            await SeedNotSuitables();
         }
 
         public async Task SeedActivities()
@@ -180,12 +184,84 @@ namespace Joe.Travel
                         "-"));
                 await _logingRepository
                     .InsertAsync(new Loging(_guidGenerator.Create(),
-                        "Wild",
+                        "Van",
+                        "-"));
+                await _logingRepository
+                    .InsertAsync(new Loging(_guidGenerator.Create(),
+                        "Hostel",
                         "-"));
             }
         }
 
-        // Included Stuff
+        public async Task SeedNotSuitables()
+        {
+            if (await _notSuitableForRepository.GetCountAsync() <= 0)
+            {
+                await _notSuitableForRepository
+                    .InsertAsync(new NotSuitableFor(_guidGenerator.Create(),
+                        "Wheelchair users",
+                        "-"));
+                await _notSuitableForRepository
+                    .InsertAsync(new NotSuitableFor(_guidGenerator.Create(),
+                        "Pregnant Women",
+                        "-"));
+                await _notSuitableForRepository
+                    .InsertAsync(new NotSuitableFor(_guidGenerator.Create(),
+                        "kids",
+                        "-"));
+            }
+        }
+
+        public async Task SeedRequirements()
+        {
+            if (await _requiredStuffRepository.GetCountAsync() <= 0)
+            {
+                await _requiredStuffRepository
+                    .InsertAsync(new RequiredStuff(_guidGenerator.Create(),
+                        "Comfortable shoes",
+                        "-"));
+                await _requiredStuffRepository
+                    .InsertAsync(new RequiredStuff(_guidGenerator.Create(),
+                        "Jacket",
+                        "-"));
+            }
+        }
+
+        public async Task SeedIncluds()
+        {
+            if (await _includedStuffRepository.GetCountAsync() <= 0)
+            {
+                await _includedStuffRepository
+                    .InsertAsync(new IncludedStuff(_guidGenerator.Create(),
+                        "Roundtrip transportation by air-conditioned bus",
+                        "-"));
+                await _includedStuffRepository
+                    .InsertAsync(new IncludedStuff(_guidGenerator.Create(),
+                        "Skip-the-line ticket to Pompeii",
+                        "-"));
+                await _includedStuffRepository
+                    .InsertAsync(new IncludedStuff(_guidGenerator.Create(),
+                        "Tour guide",
+                        "-"));
+                await _includedStuffRepository
+                    .InsertAsync(new IncludedStuff(_guidGenerator.Create(),
+                        "Entry ticket to Vesuvius National Park (April-mid-November)",
+                        "-"));
+                await _includedStuffRepository
+                    .InsertAsync(new IncludedStuff(_guidGenerator.Create(),
+                        "Hotel pickup and drop-off",
+                        "-"));
+                await _includedStuffRepository
+                    .InsertAsync(new IncludedStuff(_guidGenerator.Create(),
+                        "Food and drinks",
+                        "-"));
+                await _includedStuffRepository
+                    .InsertAsync(new IncludedStuff(_guidGenerator.Create(),
+                        "English-speaking tour guide for the day",
+                        "-"));
+            }
+        }
+
         // Not Suitable For
         // Required Stuff
         public async Task SeedGuides()
@@ -217,21 +293,34 @@ namespace Joe.Travel
                         Guid.Parse("3fa85f64-5717-4562-b3fc-2c963f66afa6"),
                         "Rome : visite avec arène, Forum Romain et mont Palatin",
                         "Participez à une visite guidée de trois icônes de la Rome antique : le Colisée, le Forum romain et le Palatin, et laissez votre guide faire revivre l'histoire.",
-                        Difficulty.Easy));
+                        Difficulty.Easy) {
+                        Duration = 9,
+                        DurationUnit = DurationUnit.Hour,
+                        TripSize = TripSize.Medium
+                    });
 
                 await _tripRepository
                     .InsertAsync(new Trip(_guidGenerator.Create(),
                         Guid.Parse("3fa85f64-5717-4562-b3fc-2c963f66afa6"),
                         "Las Vegas : Antelope Canyon, Horseshoe Bend, prise en charge",
                         "Découvrez le célèbre Lower Antelope Canyon ou le reculé Antelope Canyon X lors de ce circuit en petit groupe avec transferts et guide Navajo.",
-                        Difficulty.Easy));
+                        Difficulty.Easy)
+                    {
+                        Duration = 3,
+                        DurationUnit = DurationUnit.Day,
+                        TripSize = TripSize.Small
+                    });
 
                 await _tripRepository
                     .InsertAsync(new Trip(_guidGenerator.Create(),
                         Guid.Parse("3fa85f64-5717-4562-b3fc-2c963f66afa6"),
                         "Depuis Hurghada : journée dans la vallée des rois de Louxor",
                         "Visitez les monuments de Louxor en réservant cette excursion d'une journée. Découvrez la capitale des pharaons et son impressionnant héritage architectural : le temple de Karnak, la vallée des Rois, les colosses de Memnon et le temple d'Hatchepsout.",
-                        Difficulty.Easy));
+                        Difficulty.Easy) {
+                        Duration = 6,
+                        DurationUnit = DurationUnit.Day,
+                        TripSize = TripSize.Medium
+                    });
             }
         }
     }

@@ -151,7 +151,7 @@ namespace Joe.Travel.Migrations
 
                     b.HasIndex("TripId");
 
-                    b.ToTable("Image");
+                    b.ToTable("Joe.Travel.Images", (string)null);
                 });
 
             modelBuilder.Entity("Joe.Travel.Models.IncludedStuff", b =>

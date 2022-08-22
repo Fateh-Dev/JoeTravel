@@ -1225,7 +1225,7 @@ namespace Joe.Travel.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Image",
+                name: "Joe.Travel.Images",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -1236,9 +1236,9 @@ namespace Joe.Travel.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Image", x => x.Id);
+                    table.PrimaryKey("PK_Joe.Travel.Images", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Image_Joe.Travel.Trips_TripId",
+                        name: "FK_Joe.Travel.Images_Joe.Travel.Trips_TripId",
                         column: x => x.TripId,
                         principalTable: "Joe.Travel.Trips",
                         principalColumn: "Id",
@@ -1604,8 +1604,8 @@ namespace Joe.Travel.Migrations
                 columns: new[] { "SubjectId", "SessionId", "Type" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Image_TripId",
-                table: "Image",
+                name: "IX_Joe.Travel.Images_TripId",
+                table: "Joe.Travel.Images",
                 column: "TripId");
 
             migrationBuilder.CreateIndex(
@@ -1795,7 +1795,7 @@ namespace Joe.Travel.Migrations
                 name: "IdentityServerPersistedGrants");
 
             migrationBuilder.DropTable(
-                name: "Image");
+                name: "Joe.Travel.Images");
 
             migrationBuilder.DropTable(
                 name: "Joe.Travel.Trip_Activities");

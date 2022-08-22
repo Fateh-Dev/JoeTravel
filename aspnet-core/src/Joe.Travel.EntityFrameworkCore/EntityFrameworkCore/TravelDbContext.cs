@@ -108,9 +108,21 @@ public class TravelDbContext :
                 b.HasMany(x=>x.Logings).WithOne().HasForeignKey(x=>x.LogingId).IsRequired();
                 b.HasMany(x=>x.IncludedStuffs).WithOne().HasForeignKey(x=>x.IncludedStuffId).IsRequired();
                 b.HasMany(x=>x.RequiredStuffs).WithOne().HasForeignKey(x=>x.RequiredStuffId).IsRequired();
+               
+                b.HasMany(x=>x.Pictures).WithOne().HasForeignKey(x=>x.TripId).IsRequired();
 
                 b.HasOne<Guide>().WithMany(x=>x.Trips).HasForeignKey(x=>x.GuideId).IsRequired();
             });
+
+        
+
+         builder.Entity<Image>(b =>
+            {
+                b.ToTable(AppConsts.DbTablePrefix + "Images");
+                b.ConfigureByConvention(); //auto configure for the base class props
+               b.HasOne<Trip>().WithMany(x=>x.Pictures).HasForeignKey(x=>x.TripId).IsRequired();
+           });
+ 
 
          builder.Entity<Guide>(b =>
             {
@@ -120,6 +132,7 @@ public class TravelDbContext :
                 b.Property(x => x.Lastname).IsRequired().HasMaxLength(GuideConst.NameMaxLenght); 
                 b.HasMany(x=>x.Trips).WithOne().HasForeignKey(x=>x.GuideId).IsRequired();
             });
+ 
 
          builder.Entity<Activity>(b =>
             {

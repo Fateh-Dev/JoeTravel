@@ -8,6 +8,8 @@ namespace Joe.Travel
         [Required]
         public string Title { get; set; }
 
+        public Guid GuideId { get; set; }
+
         [Required]
         public string Description { get; set; }
 
@@ -19,8 +21,6 @@ namespace Joe.Travel
         public TripSize TripSize { get; set; }
 
         public DurationUnit DurationUnit { get; set; }
-
-        public Guid GuideId { get; set; }
 
         public string[] ActivityNames { get; set; }
 
