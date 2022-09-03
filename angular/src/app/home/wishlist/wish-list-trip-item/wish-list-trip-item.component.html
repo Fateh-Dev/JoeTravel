@@ -1,0 +1,34 @@
+<div
+  class="bg-white rounded-md border flex flex-row overflow-hidden cursor-pointer hover:shadow-lg"
+  [routerLink]="'/trips/trip-details/' + trip.id"
+>
+  <span class="inline-block w-60 h-40 overflow-hidden">
+    <img
+      class="inline-block w-60 h-40 border-r m-auto scale-100 hover:scale-110 ease-in duration-500"
+      [src]="'data:image/png;base64,' + trip.thumbnail"
+      alt=""
+    />
+  </span>
+  <span class="flex-1 flex flex-col gap-1 p-2">
+    <span class="font-bold text-lg line-clamp-1">{{ trip.title }}</span>
+    <span class="font-semibold text-sm"
+      >{{ trip.duration }} {{ getEnumDuration(trip.durationUnit) }}</span
+    >
+    <span class="text-sm line-clamp-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ trip.description }}</span>
+    <span class="flex-1"></span>
+    <span class="object-bottom text-myPrimaryColor/30 flex flex-row gap-1">
+      <mat-icon class="hover:text-myPrimaryColor cursor-pointer">surfing</mat-icon>
+      <mat-icon class="hover:text-myPrimaryColor cursor-pointer">kayaking</mat-icon>
+      <mat-icon class="hover:text-myPrimaryColor cursor-pointer">kitesurfing</mat-icon></span
+    >
+  </span>
+  <span class="flex flex-col gap-1 p-3 bg-myPrimaryColor/5">
+    <app-rating-stars [rate]="trip.rating"></app-rating-stars>
+    <span class="text-xs text-end"> <b>4 </b>(120 Reviews)</span>
+    <span class="h-full"></span>
+    <span class="font-semibold">From</span>
+    <span class="font-bold text-xl">1500 Da </span>
+    <span class="text-xs text-end">Per Person </span>
+    <span class="flex-1"> </span>
+  </span>
+</div>

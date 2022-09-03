@@ -1,0 +1,101 @@
+<abp-loader-bar></abp-loader-bar>
+<!-- <abp-dynamic-layout></abp-dynamic-layout> -->
+
+<div class="flex flex-col">
+  <header
+    (scroll)="onWindowScroll()"
+    class="headerToolbar flex flex-row fixed w-screen top-0 z-50 text-gray-800 text-center py-2 px-20"
+  >
+    <span>
+      <img
+        class="inline-block h-8 cursor-pointer"
+        src="../assets/logo.png"
+        alt=""
+        [routerLink]="''"
+    /></span>
+    <span class="my-auto m-2 flex">
+      <button
+        mat-flat-button
+        class="bg-white/0"
+        [routerLink]="'/wishlist'"
+        [routerLinkActive]="'text-myPrimaryColor'"
+      >
+        <span class="material-symbols-outlined p-1 py-2"> favorite </span>
+        <span>Wishlist</span>
+      </button>
+      <button
+        mat-flat-button
+        class="bg-white/0"
+        [routerLink]="'/guides'"
+        [routerLinkActive]="'text-myPrimaryColor'"
+      >
+        <span class="material-symbols-outlined p-1 py-2"> badge </span>
+        <span>Guides</span>
+      </button>
+      <button
+        mat-flat-button
+        class="bg-white/0"
+        [routerLink]="'/destinations'"
+        [routerLinkActive]="'text-myPrimaryColor'"
+      >
+        <span class="material-symbols-outlined p-1 py-2"> pin_drop </span>
+        <span>Destinations</span>
+      </button>
+      <button
+        mat-flat-button
+        class="bg-white/0"
+        [routerLink]="'/trips'"
+        [routerLinkActive]="'text-myPrimaryColor'"
+      >
+        <span class="material-symbols-outlined p-1 py-2"> card_travel </span>
+        <span>Trips</span>
+      </button>
+      <button
+        mat-flat-button
+        class="bg-white/0"
+        [routerLink]="'/help'"
+        [routerLinkActive]="'text-myPrimaryColor'"
+      >
+        <span class="material-symbols-outlined p-1 py-2"> info </span>
+        <span>Help</span>
+      </button>
+    </span>
+    <span class="my-auto m-2 flex-1"></span>
+    <ng-template #signUp>
+      <span class="my-auto m-2 flex">
+        <button
+          mat-flat-button
+          [routerLink]="'/account'"
+          color="primary"
+          class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 shadow-md"
+        >
+          Sign Up
+        </button>
+      </span></ng-template
+    >
+    <span *ngIf="this.configStatService.getOne('currentUser').isAuthenticated; else signUp"
+      ><img
+        [matMenuTriggerFor]="menu"
+        class="inline-block h-10 w-10 m-auto rounded-full ring-2 ring-myPrimaryColor cursor-pointer"
+        src="https://cdn-icons-png.flaticon.com/512/147/147144.png"
+        alt=""
+      />
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="'/profile'">
+          <mat-icon>account_circle</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-menu-item (click)="logOut()">
+          <mat-icon>logout</mat-icon>
+          <span>Sign Out</span>
+        </button>
+      </mat-menu>
+      <span class="m-auto mx-2 font-semibold">{{
+        this.configStatService.getOne('currentUser').userName
+      }}</span>
+    </span>
+  </header>
+  <div class="bg-gray-100 min-h-screen">
+    <router-outlet></router-outlet>
+  </div>
+</div>

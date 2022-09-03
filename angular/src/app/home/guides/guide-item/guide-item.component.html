@@ -1,0 +1,41 @@
+<div class="flex flex-row h-0 px-2 z-40 relative">
+  <span class="h-8">
+    <i class="fa-regular fa-heart text-xl text-white my-auto" (click)="$event.preventDefault()"></i
+  ></span>
+  <span class="flex-1"></span>
+  <mat-chip-list aria-label="Fish selection" class="m-2">
+    <mat-chip class="bg-gradient-to-r from-pink-500 to-yellow-500 shadow">
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    </mat-chip>
+  </mat-chip-list>
+  <!-- <span class="px-2 py-1 h-8 bg-myPrimaryColor m-1 z-51 text-white font-bold rounded-xl">Easy</span> -->
+</div>
+<div class="flex flex-row">
+  <div class="h-24 w-24 overflow-hidden bg-slate-100 rounded-full m-2 ">
+      <!-- <img
+      src="https://source.unsplash.com/random/?profile picture"
+      class="object-cover object-center w-24 h-24"
+    /> -->
+    <mat-spinner
+      mode="indeterminate"
+      class="m-auto relative"
+      [strokeWidth]="3"
+      [diameter]="96"
+    ></mat-spinner>
+  </div>
+  <div class="flex flex-col my-auto text-md font-semibold">
+    <span> {{ guide.firstname }}</span>
+    <span> {{ guide.lastname }}</span>
+  </div>
+</div>
+<!-- <mat-progress-barclass="h-4"></mat-progress-bar> -->
+
+<div class="flex flex-row h-0 px-2 relative -top-5">
+  <span class="flex-1"></span>
+  <app-rating-stars [rate]="3"></app-rating-stars>
+</div>
+
+<div class="flex flex-row px-2 gap-1">
+  <span class="h-4 bg-slate-200 w-30"> </span>
+</div>
+<div class="text-md font-bold px-2 py-2 object-bottom h-4 bg-slate-200 w-40 m-2"></div>

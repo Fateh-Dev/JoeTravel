@@ -1,0 +1,46 @@
+<div class="m-28 border bg-slate-200 rounded-lg static">
+  <!-- <div class="flex flex-row z-20"> -->
+  <div
+    class="w-40 h-40 rounded-full bg-slate-300 z-20 border-4 border-white relative -top-10 left-10 overflow-hidden"
+  >
+    <mat-spinner
+      mode="indeterminate"
+      class="m-auto relative"
+      [strokeWidth]="3"
+      [diameter]="152" 
+    ></mat-spinner>
+  </div>
+  <!-- </div> -->
+  <mat-progress-bar
+    mode="indeterminate"
+    class="h-0 absolute bottom-1"
+    *ngIf="loading"
+  ></mat-progress-bar>
+  <mat-tab-group mat-align-tabs="center" class="relative -top-32">
+    <mat-tab label="General Informations">
+      <div class="p-10">
+        <div class="flex flex-row">
+          <div class="basis-1/5 flex bg-red mt-12 px-auto w-full">
+            <app-rating-stars [rate]="3" class="text-2xl"></app-rating-stars>
+          </div>
+          <div class="basis-4/5 flex-1">
+            <pre>
+          {{ guideItem.firstname | json }}
+        </pre
+            >
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Trips">
+      <div class="p-10">
+        <div class="basis-4/5 flex flex-col gap-2 py-2 pt-10">
+          <app-wish-list-trip-item
+            *ngFor="let trip of guideItem.trips"
+            [trip]="trip"
+          ></app-wish-list-trip-item>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

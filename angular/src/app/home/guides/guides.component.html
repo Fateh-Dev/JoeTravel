@@ -1,0 +1,65 @@
+<section class="h-16"></section>
+
+<div class="flex flex-row gap-2 px-5">
+  <div class="basis-1/5 flex flex-col"></div>
+  <div class="basis-4/5 flex flex-col">
+    <app-search-field [showDates]="false"></app-search-field>
+  </div>
+</div>
+<div class="flex flex-row gap-2 px-5">
+  <div class="basis-1/5 py-2 flex flex-col">
+    <mat-accordion class="example-headers-align sticky top-16" multi>
+      <mat-expansion-panel class="bg-white/0 shadow-none border m-1">
+        <mat-expansion-panel-header class="h-9">
+          <mat-panel-title class="text-emerald-700"> Rating</mat-panel-title>
+        </mat-expansion-panel-header>
+        <span class="example-list-section">
+          <ul>
+            <li class=" " *ngFor="let i of [1, 2, 3, 4]">
+              <mat-checkbox class="text-emerald-700"> 2 - 4 Hours </mat-checkbox>
+            </li>
+          </ul>
+        </span>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel class="bg-white/0 shadow-none border m-1">
+        <mat-expansion-panel-header class="h-9">
+          <mat-panel-title class="text-emerald-700"> Difficulty</mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div class="basis-4/5 flex flex-row flex-wrap gap-2 bg-slate-100 py-2 pt-10" *ngIf="!loading">
+    <div
+      class="bg-slate-200 basis-1/4 flex-1 rounded-md cursor-pointer border hover:shadow-lg"
+      *ngFor="let i of items"
+      [routerLink]="'/guides/guide-details/' + i.id"
+    >
+      <app-guide-item [guide]="i"></app-guide-item>
+    </div>
+    <div class="basis-1/4 flex-1" *ngFor="let i of [1, 2, 3]"></div>
+  </div>
+  <div class="basis-4/5 flex flex-row flex-wrap gap-2 bg-slate-100 py-2 pt-10" *ngIf="loading">
+    <div
+      class="bg-slate-200 basis-1/4 flex-1 rounded-md cursor-pointer border hover:shadow-lg"
+      *ngFor="let i of [1, 2, 3]"
+    >
+      <app-guide-item-loading></app-guide-item-loading>
+    </div>
+  </div>
+</div>
+
+<div class="flex flex-row gap-2 px-5">
+  <div class="basis-1/5 py-2"></div>
+  <div class="basis-4/5 py-2">
+    <div class="flex flex-row mx-auto" *ngIf="!loading">
+      <button
+        mat-flat-button
+        class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 rounded-full text-white mx-auto"
+        style="border-radius: 20px"
+      >
+        Load More Trips
+      </button>
+    </div>
+  </div>
+</div>

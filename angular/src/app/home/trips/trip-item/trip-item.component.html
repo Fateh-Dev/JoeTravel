@@ -1,0 +1,54 @@
+<div class="flex flex-row h-0 px-2 z-40 relative">
+  <span class="h-8">
+    <i class="fa-regular fa-heart text-xl text-white my-auto" (click)="$event.preventDefault()"></i
+  ></span>
+  <span class="flex-1"></span>
+  <!-- <span class="px-2 py-1 h-8 bg-myPrimaryColor m-1 z-51 text-white font-bold rounded-xl">Easy</span> -->
+</div>
+<div class="h-36 w-full overflow-hidden static">
+  <img
+    class="inline-block w-full h-full scale-100 hover:scale-110 ease-in duration-500"
+    [src]="'data:image/png;base64,' + trip.thumbnail"
+    alt=""
+    loading="lazy"
+  />
+<mat-progress-bar mode="indeterminate" class="h-0 absolute bottom-1" *ngIf="loading"></mat-progress-bar>
+</div>
+<div class="flex flex-row h-0 px-2 relative -top-5">
+  <mat-chip-list aria-label="Fish selection" (click)="$event.preventDefault()">
+    <mat-chip class="bg-gradient-to-r from-blue-500 to-green-500 text-white shadow"
+      >5000 Da</mat-chip
+    >
+  </mat-chip-list>
+  <span class="flex-1"></span>
+
+  <mat-chip-list aria-label="Fish selection" (click)="$event.preventDefault()">
+    <mat-chip class="bg-gradient-to-r from-pink-500 to-yellow-500 text-white shadow">{{
+      getEnumDiff(trip.difficulty)
+    }}</mat-chip>
+  </mat-chip-list>
+</div>
+<div class="px-2 py-3 pt-4 pb-1 flex flex-col">
+  <span class="font-bold text-lg text-slate-700 line-clamp-1">{{ trip.title }} </span>
+  <!-- <span>Visit Ziama </span> -->
+  <span class="font-semibold text-sm">
+    {{ trip.duration }} {{ getEnumDuration(trip.durationUnit) }}</span
+  >
+</div>
+<div class="flex flex-row px-2 py-1 gap-1">
+  <app-rating-stars [rate]="trip.rating"></app-rating-stars>
+  <span class="text-xs">{{ trip.rating }} (120 Reviews)</span>
+</div>
+<div class="flex flex-row px-2 py-2 gap-1">
+  <span class="flex flex-row">
+    <i class="fa-solid fa-location-dot text-myPrimaryColor"></i>
+  </span>
+  <span class="text-sm">Ziama - Jijel</span>
+</div>
+
+<span class="text-myPrimaryColor/70 p-2">
+  <mat-icon class="hover:text-myPrimaryColor cursor-pointer">surfing</mat-icon>
+  <mat-icon class="hover:text-myPrimaryColor cursor-pointer">kayaking</mat-icon>
+  <mat-icon class="hover:text-myPrimaryColor cursor-pointer">kitesurfing</mat-icon></span
+>
+<!-- <div class="text-md font-bold px-2 py-2 object-bottom">5000 Da Per Person</div> -->

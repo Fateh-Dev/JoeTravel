@@ -1,0 +1,18 @@
+<div class="h-screen py-40">
+  <div class="w-96 bg-slate-200 border shadow flex flex-col gap-2 m-auto p-4">
+    <div class="flex-1 w-full h-30 bg-blue-900"></div>
+    <div class="flex-1">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Username</mat-label>
+        <input matInput type="text" [(ngModel)]="username" />
+      </mat-form-field>
+    </div>
+    <div class="flex-1">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Password</mat-label>
+        <input matInput type="text" [(ngModel)]="password" />
+      </mat-form-field>
+    </div>
+    <button mat-flat-button color="primary" (click)="login()">Login</button>
+  </div>
+</div>

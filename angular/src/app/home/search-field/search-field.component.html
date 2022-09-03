@@ -1,0 +1,89 @@
+<form class="flex flex-row gap-2 w-full" [formGroup]="searchForm">
+  <div
+    class="border-2 h-14 basis-2/3 rounded-md border-myPrimaryColor bg-white flex flex-row p-1 px-2 gap-3"
+  >
+    <i class="fa fa-search text-2xl text-myPrimaryColor m-auto"></i>
+    <span class="flex-1 m-auto">
+      <div class="m-auto pt-0">
+        <input
+          type="text"
+          placeholder="e.g: Ziama Mansouriah .."
+          class="border-white focus:ring-0 w-full"
+          autocomplete="off"
+          formControlName="title"
+        />
+      </div>
+    </span>
+    <span class="my-auto flex">
+      <button
+        mat-flat-button
+        autocomplete="off"
+        type="submit"
+        (click)="callSearch()"
+        color="primary"
+        class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 shadow-md rounded-3xl"
+      >
+        Search
+      </button>
+    </span>
+  </div>
+  <div
+    *ngIf="showDates"
+    (click)="picker.open()"
+    matRipple
+    class="border-2 h-14 basis-1/3 rounded-md border-myPrimaryColor bg-white p-1 px-2 static cursor-pointer active:bg-slate-300"
+  >
+    <!-- <i class="fa fa-search text-2xl text-myPrimaryColor m-auto"></i> -->
+    <span class="flex-1 my-auto flex flex-row gap-2 align-middle p-0.5">
+      <div class="my-auto flex-1 p-auto text-lg text-center font-bold align-middle text-slate-600">
+        {{ searchForm.controls.start.value | date: 'dd-MM-yyyy' }} &nbsp; - &nbsp;
+        {{ searchForm.controls.end.value | date: 'dd-MM-yyyy' }}
+      </div>
+      <button mat-icon-button (click)="picker.open()">
+        <mat-icon
+          class="text-transparent l bg-clip-text bg-gradient-to-r from-green-400 to-blue-500"
+          >date_range</mat-icon
+        >
+      </button>
+    </span>
+    <mat-form-field class="border-white focus:ring-0 w-full invisible">
+      <!-- <mat-label>Enter a date searchForm</mat-label> -->
+      <mat-date-range-input [rangePicker]="picker"
+      [dateFilter]="myFilter" class="border-white focus:ring-0 w-full"
+        >
+        <input
+          matStartDate
+          formControlName="start"
+          placeholder="Start date"
+          class="border-white focus:ring-0 w-full"
+          (dateInput)="addEvent('input', $event)"
+          (dateChange)="addEvent('change', $event)"
+        />
+        <input
+          matEndDate
+          formControlName="end"
+          placeholder="End date"
+          class="border-white focus:ring-0 w-full"
+          (dateInput)="addEvent('input', $event)"
+          (dateChange)="addEvent('change', $event)"
+        />
+      </mat-date-range-input>
+      <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <!-- <button mat-icon-button><mat-icon matSuffix  [for]="picker">home</mat-icon></button>  -->
+      <mat-date-range-picker #picker></mat-date-range-picker>
+
+      <mat-error *ngIf="searchForm.controls.start.hasError('matStartDateInvalid')"
+        >Invalid start date</mat-error
+      >
+      <mat-error *ngIf="searchForm.controls.end.hasError('matEndDateInvalid')"
+        >Invalid end date</mat-error
+      >
+    </mat-form-field>
+  </div>
+
+  <!-- <button>open</button> -->
+</form>
+<!-- <div class="example-events">
+  <div *ngFor="let e of events">{{ e }}</div>
+</div> -->

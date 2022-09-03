@@ -1,0 +1,118 @@
+<form class="flex flex-col gap-1 px-20" [formGroup]="TripForm" (submit)="submit()">
+  <div class="w-full flex-1">
+    <mat-form-field appearance="outline" class="w-full flex-1">
+      <mat-label>Titre</mat-label>
+      <input
+        matInput
+        placeholder="pat@example.com"
+        formControlName="title"
+        required
+        autocomplete="off"
+      />
+      <!-- <mat-error *ngIf="title.invalid">{{ getErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+  </div>
+  <div class="w-full flex-1">
+    <mat-form-field appearance="outline" class="w-full flex-1">
+      <mat-label>Description</mat-label>
+      <input
+        matInput
+        placeholder="pat@example.com"
+        formControlName="description"
+        required
+        autocomplete="off"
+      />
+      <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+  </div>
+  <div class="w-full flex-1">
+    <mat-form-field appearance="outline" class="w-full flex-1">
+      <mat-label>Titre</mat-label>
+      <input
+        matInput
+        placeholder="pat@example.com"
+        formControlName="thumbnailUrl"
+        required
+        autocomplete="off"
+      />
+      <!-- <mat-error *ngIf="title.invalid">{{ getErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+  </div>
+  <div class="w-full flex-1 flex flex-row gap-2">
+    <mat-form-field appearance="outline" class="w-full flex-1">
+      <mat-label>Rating</mat-label>
+      <input
+        matInput
+        placeholder="pat@example.com"
+        type="number"
+        formControlName="rating"
+        required
+        autocomplete="off"
+      />
+      <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-full flex-1">
+      <mat-label>Duration</mat-label>
+      <input
+        matInput
+        placeholder="pat@example.com"
+        type="number"
+        formControlName="duration"
+        required
+        autocomplete="off"
+      />
+      <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-full flex-1">
+      <mat-label>Difficulty</mat-label>
+      <input
+        matInput
+        placeholder="pat@example.com"
+        type="number"
+        formControlName="difficulty"
+        required
+        autocomplete="off"
+      />
+      <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+  </div>
+  <div class="w-full flex-1 flex flex-row gap-2">
+    <mat-form-field appearance="outline" class="w-full flex-1">
+      <mat-label>Trip Size</mat-label>
+      <input
+        matInput
+        placeholder="pat@example.com"
+        type="number"
+        formControlName="tripSize"
+        required
+        autocomplete="off"
+      />
+      <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-full flex-1">
+      <mat-label>Guide Language</mat-label>
+      <mat-select formControlName="glanguages">
+        <mat-option value="English">English</mat-option>
+        <mat-option value="Francais">Francais</mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+  </div>
+  <label for="singleFile">Upload file</label>
+  <input id="singleFile" type="file" [fileUploadInputFor]="fileUploadQueue" />
+  <br />
+
+  <mat-file-upload-queue 
+    #fileUploadQueue
+    [fileAlias]="'data'"
+    [httpUrl]="'https://localhost:44384/api/app/image'"
+  >
+    <mat-file-upload
+      [file]="file"
+      [id]="i"
+      *ngFor="let file of fileUploadQueue.files; let i = index"
+    ></mat-file-upload>
+  </mat-file-upload-queue>
+  <button mat-flat-button type="submit" (click)="$event.preventDefault(); submit()">Valide</button>
+  <!-- <pre>{{ TripForm.value |json}}</pre>/ -->
+</form>

@@ -15,6 +15,13 @@ function configureRoutes(routesService: RoutesService) {
         order: 1,
         layout: eLayoutType.application,
       },
+      // {
+      //   path: 'trips',
+      //   name: '::Menu:Home',
+      //   iconClass: 'fas fa-home',
+      //   order: 1,
+      //   layout: eLayoutType.application,
+      // },
     ]);
   };
 }
