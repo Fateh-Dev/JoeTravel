@@ -29,6 +29,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
+using Microsoft.Extensions.FileProviders;
 
 namespace Joe.Travel;
 
@@ -143,20 +144,21 @@ public class TravelHttpApiHostModule : AbpModule
                     {"Xplorer_Api", "Default"}
             },
             options =>
-            { 
+            {
                 options.SwaggerDoc("Xplorer_Api", new OpenApiInfo { Title = "Xplorer APIs", Version = "1.0" });
                 options.SwaggerDoc("Reference_Tables", new OpenApiInfo { Title = "Reference Tables", Version = "1.0" });
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "ABP Default APIs", Version = "v1" });
 
 
                 options.DocInclusionPredicate((docName, description) =>
-                {       var nm = description.ActionDescriptor.ToString().ToLower();
-                        var groupName = description.GroupName;
-                    if(docName=="v1") return true; 
+                {
+                    var nm = description.ActionDescriptor.ToString().ToLower();
+                    var groupName = description.GroupName;
+                    if (docName == "v1") return true;
                     if (!string.IsNullOrWhiteSpace(groupName))
-                        { 
-                            if (groupName == docName) return true;
-                        }
+                    {
+                        if (groupName == docName) return true;
+                    }
 
                     return false;
                 });
@@ -198,19 +200,19 @@ public class TravelHttpApiHostModule : AbpModule
         {
             options.AddDefaultPolicy(builder =>
                {
-                builder
-                    .WithOrigins(
-                        configuration["App:CorsOrigins"]
-                            .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                            .Select(o => o.RemovePostFix("/"))
-                            .ToArray()
-                    )
-                    .WithAbpExposedHeaders()
-                    .SetIsOriginAllowedToAllowWildcardSubdomains()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials();
-            });
+                   builder
+                       .WithOrigins(
+                           configuration["App:CorsOrigins"]
+                               .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                               .Select(o => o.RemovePostFix("/"))
+                               .ToArray()
+                       )
+                       .WithAbpExposedHeaders()
+                       .SetIsOriginAllowedToAllowWildcardSubdomains()
+                       .AllowAnyHeader()
+                       .AllowAnyMethod()
+                       .AllowCredentials();
+               });
         });
     }
 
@@ -232,6 +234,14 @@ public class TravelHttpApiHostModule : AbpModule
         }
 
         app.UseCorrelationId();
+
+        // app.UseStaticFiles(new StaticFileOptions
+        // {
+        //     FileProvider = new PhysicalFileProvider(
+        //         Path.Combine(env.ContentRootPath, "MyStaticFiles")),
+        //     RequestPath = "/StaticFiles"
+        // });
+
         app.UseStaticFiles();
         app.UseRouting();
         app.UseCors();

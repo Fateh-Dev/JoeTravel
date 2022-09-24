@@ -48,28 +48,28 @@ namespace Joe.Travel.Models
 
         public Guide(
             Guid id,
-            [NotNull] string Firstname,
-            [NotNull] string Lastname
+          [NotNull] string firstname,
+         [NotNull] string lastname
         ) :
             base(id)
         {
-            SetName (Firstname, Lastname);
+            SetName(firstname, lastname);
         }
 
         public void SetName(
-            [NotNull] string Firstname,
-            [NotNull] string Lastname
+     [NotNull] string firstname,
+       [NotNull] string lastname
         )
         {
             Firstname =
                 Check
-                    .NotNullOrWhiteSpace(Firstname,
-                    nameof(Firstname),
+                    .NotNullOrWhiteSpace(firstname,
+                    nameof(firstname),
                     maxLength: 50);
             Lastname =
                 Check
-                    .NotNullOrWhiteSpace(Lastname,
-                    nameof(Lastname),
+                    .NotNullOrWhiteSpace(lastname,
+                    nameof(lastname),
                     maxLength: 50);
         }
     }

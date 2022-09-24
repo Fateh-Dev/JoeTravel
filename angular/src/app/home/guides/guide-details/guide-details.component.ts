@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { GuideService } from '@proxy/app-services';
+import { ActivatedRoute } from '@angular/router'; 
+import { GuideService } from '@proxy';
 import { GuideDto } from '@proxy/models';
 
 @Component({
@@ -16,7 +16,7 @@ export class GuideDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
       this.loading = true
-      this.guideService.getGuideWithDetails(paramMap.get('id')).subscribe(
+      this.guideService.get(paramMap.get('id')).subscribe(
         e => {
           this.guideItem = e;
           this.loading = false;

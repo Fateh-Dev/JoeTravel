@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { GuideService, TripService } from '@proxy/app-services';
+import { Component, OnInit } from '@angular/core'; 
+import { GuideService } from '@proxy';
 import { GuideDto } from '@proxy/models';
 
 @Component({

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Joe.Travel.Models;
@@ -75,12 +76,21 @@ namespace Joe.Travel
 
             await SetActivitiesAsync(trip, activityNames);
             await SetRisksAsync(trip, riskNames);
-
             await SetNotAllowedAsync(trip, notAllowedStuffNames);
             await SetNotSuitableAsync(trip, notSuitableForNames);
             await SetLogingAsync(trip, logingNames);
             await SetIncludedAsync(trip, IncludedStuffNames);
             await SetRequiredAsync(trip, RequiredStuffNames);
+
+
+            string someUrl = "MyStaticFiles/";
+            Random r = new Random();
+            int rInt = r.Next(1, 20);
+            using (var webClient = new WebClient())
+            {
+                trip.Thumbnail =
+                    webClient.DownloadData(someUrl + "images/" +rInt+ ".jpg");
+            }
 
             await _tripRepository.InsertAsync(trip);
         }
@@ -101,7 +111,7 @@ namespace Joe.Travel
             [CanBeNull] string[] RequiredStuffNames
         )
         {
-            trip.SetTitle (title);
+            trip.SetTitle(title);
             trip.GuideId = GuideId;
 
             await SetActivitiesAsync(trip, activityNames);
@@ -137,11 +147,11 @@ namespace Joe.Travel
                 return;
             }
 
-            trip.RemoveAllActivitiesExceptGivenIds (activityIds);
+            trip.RemoveAllActivitiesExceptGivenIds(activityIds);
 
             foreach (var activityId in activityIds)
             {
-                trip.AddActivity (activityId);
+                trip.AddActivity(activityId);
             }
         }
 
@@ -166,11 +176,11 @@ namespace Joe.Travel
                 return;
             }
 
-            trip.RemoveAllRisksExceptGivenIds (riskIds);
+            trip.RemoveAllRisksExceptGivenIds(riskIds);
 
             foreach (var riskId in riskIds)
             {
-                trip.AddRisks (riskId);
+                trip.AddRisks(riskId);
             }
         }
 
@@ -195,11 +205,11 @@ namespace Joe.Travel
                 return;
             }
 
-            trip.RemoveAllNotAllowedStuffsExceptGivenIds (Ids);
+            trip.RemoveAllNotAllowedStuffsExceptGivenIds(Ids);
 
             foreach (var id in Ids)
             {
-                trip.AddNotAllowedStuffs (id);
+                trip.AddNotAllowedStuffs(id);
             }
         }
 
@@ -224,11 +234,11 @@ namespace Joe.Travel
                 return;
             }
 
-            trip.RemoveAllNotSuitableForsExceptGivenIds (Ids);
+            trip.RemoveAllNotSuitableForsExceptGivenIds(Ids);
 
             foreach (var id in Ids)
             {
-                trip.AddNotSuitableFors (id);
+                trip.AddNotSuitableFors(id);
             }
         }
 
@@ -252,11 +262,11 @@ namespace Joe.Travel
                 return;
             }
 
-            trip.RemoveAllLogingsExceptGivenIds (Ids);
+            trip.RemoveAllLogingsExceptGivenIds(Ids);
 
             foreach (var id in Ids)
             {
-                trip.AddLogings (id);
+                trip.AddLogings(id);
             }
         }
 
@@ -281,11 +291,11 @@ namespace Joe.Travel
                 return;
             }
 
-            trip.RemoveAllIncludedStuffsExceptGivenIds (Ids);
+            trip.RemoveAllIncludedStuffsExceptGivenIds(Ids);
 
             foreach (var id in Ids)
             {
-                trip.AddIncludedStuffs (id);
+                trip.AddIncludedStuffs(id);
             }
         }
 
@@ -310,11 +320,11 @@ namespace Joe.Travel
                 return;
             }
 
-            trip.RemoveAllRequiredStuffsExceptGivenIds (Ids);
+            trip.RemoveAllRequiredStuffsExceptGivenIds(Ids);
 
             foreach (var id in Ids)
             {
-                trip.AddRequiredStuffs (id);
+                trip.AddRequiredStuffs(id);
             }
         }
     }

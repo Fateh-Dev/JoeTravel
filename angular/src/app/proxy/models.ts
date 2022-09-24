@@ -2,6 +2,8 @@ import type { EntityDto, PagedAndSortedResultRequestDto } from '@abp/ng.core';
 import type { Difficulty } from './difficulty.enum';
 import type { TripSize } from './trip-size.enum';
 import type { DurationUnit } from './duration-unit.enum';
+import type { Gender } from './gender.enum';
+import type { Wilaya } from './wilaya.enum';
 
 export interface ActivityDto extends EntityDto<string> {
   descriptionFr?: string;
@@ -47,10 +49,29 @@ export interface CreateUpdateTripDto {
 export interface GuideDto extends EntityDto<string> {
   firstname?: string;
   lastname?: string;
+  username?: string;
+  email?: string;
+  birthday?: string;
+  description?: string;
+  languages?: string;
+  picture?: string;
+  gender: Gender;
+  phoneNumber?: string;
+  country?: string;
+  wilaya: Wilaya;
+  city?: string;
+  zipCode: number;
+  address?: string;
+  address2?: string;
+  trips: TripDto[];
 }
 
 export interface GuideLookupDto extends EntityDto<string> {
   name?: string;
+}
+
+export interface ImageDto extends EntityDto<string> {
+  pictureData: number[];
 }
 
 export interface IncludedStuffLookupDto extends EntityDto<string> {
@@ -69,6 +90,7 @@ export interface Lookups extends EntityDto<string> {
   requiredStuffs: RequiredStuffLookupDto[];
   includedStuffs: IncludedStuffLookupDto[];
   notSuitableFors: NotSuitableForLookupDto[];
+  guides: GuideLookupDto[];
 }
 
 export interface NotAllowedStuffLookupDto extends EntityDto<string> {
@@ -111,4 +133,5 @@ export interface TripDto extends EntityDto<string> {
 }
 
 export interface TripGetListInput extends PagedAndSortedResultRequestDto {
+  title?: string;
 }

@@ -19,10 +19,11 @@ import { SharedModule } from './shared/shared.module';
 import { ProfileModule } from './profile/profile.module';
 import { NotFound404Component } from './not-found404/not-found404.component';
 import { LoginComponent } from './login/login.component'; 
+import { MaterialModule } from './shared/material.module';
 @NgModule({
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,  
+    BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule.forRoot({
       environment,
@@ -34,12 +35,10 @@ import { LoginComponent } from './login/login.component';
     TenantManagementConfigModule.forRoot(),
     SettingManagementConfigModule.forRoot(),
     ThemeBasicModule.forRoot(),
-    SharedModule, 
-    // HomeModule,
-    // ProfileModule 
+    SharedModule, MaterialModule
   ],
   declarations: [AppComponent, NotFound404Component, LoginComponent],
   providers: [APP_ROUTE_PROVIDER],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

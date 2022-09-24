@@ -19,5 +19,6 @@ namespace Joe.Travel
         public List<IncludedStuffLookupDto> IncludedStuffs { get; set; }
 
         public List<NotSuitableForLookupDto> NotSuitableFors { get; set; }
+        public List<GuideLookupDto> Guides { get; set; }
     }
 }

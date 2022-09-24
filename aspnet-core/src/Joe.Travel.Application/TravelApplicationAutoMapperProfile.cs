@@ -14,6 +14,7 @@ public class TravelApplicationAutoMapperProfile : Profile
          CreateMap<CreateUpdateTripDto ,Trip>();
          CreateMap<TripWithDetails ,Trip>();
          CreateMap<TripWithDetails ,TripDto>();
+         CreateMap<TripWithOutDetails ,TripDto>();
 
          CreateMap<Activity ,ActivityDto>();
          CreateMap<Activity ,ActivityLookupDto>();

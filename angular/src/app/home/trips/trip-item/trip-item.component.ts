@@ -1,7 +1,6 @@
 import { mapEnumToOptions } from '@abp/ng.core/public-api';
 import { Component, Input, OnInit } from '@angular/core';
-import { difficultyOptions, durationUnitOptions } from '@proxy';
-import { Trip, TripDto, TripMiniDto } from '@proxy/models';
+import { difficultyOptions, durationUnitOptions, TripDto } from '@proxy'; 
 import { Directive, ElementRef } from '@angular/core';
 
 @Directive({ selector: 'img' })
@@ -21,7 +20,7 @@ export class LazyImgDirective {
 })
 export class TripItemComponent implements OnInit {
   @Input()
-  trip: TripMiniDto
+  trip: TripDto
   @Input()
   loading
 

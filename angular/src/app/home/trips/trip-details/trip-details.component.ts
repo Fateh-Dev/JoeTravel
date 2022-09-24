@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TripService } from '@proxy/app-services';
-import { TripDto, TripWithDetailsDto } from '@proxy/models';
+import { ActivatedRoute } from '@angular/router'; 
+import { TripDto, TripService } from '@proxy';
 
 @Component({
   selector: 'app-trip-details',
@@ -9,14 +8,14 @@ import { TripDto, TripWithDetailsDto } from '@proxy/models';
   styleUrls: ['./trip-details.component.scss']
 })
 export class TripDetailsComponent implements OnInit {
-  tripItem: TripWithDetailsDto
+  tripItem: TripDto
   loading = false
   constructor(public tripService: TripService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
       this.loading = true
-      this.tripService.getTripWithDetails(paramMap.get('id')).subscribe(
+      this.tripService.get(paramMap.get('id')).subscribe(
         e => {
           this.tripItem = e
           this.loading = false

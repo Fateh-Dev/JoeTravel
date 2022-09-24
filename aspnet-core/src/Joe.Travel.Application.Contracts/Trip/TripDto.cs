@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Volo.Abp.Application.Dtos;
 
 namespace Joe.Travel
@@ -17,7 +18,7 @@ namespace Joe.Travel
 
         public byte[] Thumbnail { get; set; }
 
-        public string TripSize { get; set; } 
+        public string TripSize { get; set; }
 
         public string Difficulty { get; set; }
 
@@ -33,6 +34,6 @@ namespace Joe.Travel
 
         public string[] NotSuitableForNames { get; set; }
 
-        public string[] RequiredStuffNames { get; set; }
+        public string[] RequiredStuffNames { get; set; } 
     }
 }

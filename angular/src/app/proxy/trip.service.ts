@@ -45,6 +45,14 @@ export class TripService {
     },
     { apiName: this.apiName });
 
+  getHomeList = (input: TripGetListInput) =>
+    this.restService.request<any, PagedResultDto<TripDto>>({
+      method: 'GET',
+      url: '/api/app/trip/home-list',
+      params: { title: input.title, sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
+    },
+    { apiName: this.apiName });
+
   getIncludedStuffLookup = () =>
     this.restService.request<any, ListResultDto<IncludedStuffLookupDto>>({
       method: 'GET',
@@ -56,7 +64,7 @@ export class TripService {
     this.restService.request<any, PagedResultDto<TripDto>>({
       method: 'GET',
       url: '/api/app/trip',
-      params: { sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
+      params: { title: input.title, sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
     },
     { apiName: this.apiName });
 

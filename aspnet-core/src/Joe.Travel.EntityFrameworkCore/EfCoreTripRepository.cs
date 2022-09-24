@@ -64,7 +64,8 @@ namespace TripStore.Trips
                 guide => guide.Id,
                 (trip, guide) => new { trip, guide })
                 .Select(x =>
-                    new TripWithDetails {
+                    new TripWithDetails
+                    {
                         Id = x.trip.Id,
                         Title = x.trip.Title,
                         Description = x.trip.Description,
@@ -144,15 +145,59 @@ namespace TripStore.Trips
                     });
         }
 
+        private async Task<IQueryable<TripWithOutDetails>> ApplyHomeFilterAsync()
+        {
+            var dbContext = await GetDbContextAsync();
+
+            return (
+            await GetDbSetAsync()
+            ).Select(x =>
+                    new TripWithOutDetails
+                    {
+                        Id = x.Id,
+                        Title = x.Title,
+                        Description = x.Description,
+                        Difficulty = x.Difficulty.ToString(),
+                        GuideName = "x.guide.Firstname +   + x.guide.Lastname",
+                        Rating = x.Rating,
+                        Duration =
+                            x.Duration.ToString() +
+                            " " +
+                            x.DurationUnit.ToString() +
+                            ((x.Duration != 1) ? "s" : ""),
+                        TripSize = x.TripSize.ToString(),
+                        Thumbnail = x.Thumbnail
+                    });
+        }
+
         public override Task<IQueryable<Trip>> WithDetailsAsync()
         {
-            return base.WithDetailsAsync(x => x.Activities,
-            y => y.Risks,
+            return base.WithDetailsAsync(
+            x => x.Activities
+            , y => y.Risks,
             z => z.NotAllowedStuffs,
             v => v.NotSuitableFors,
             b => b.IncludedStuffs,
             f => f.Logings,
-            g => g.RequiredStuffs);
+            g => g.RequiredStuffs
+            );
+        }
+
+        public async Task<List<TripWithOutDetails>> GetHomeListAsync(string sorting, int skipCount, int maxResultCount, string title, CancellationToken cancellationToken = default)
+        {
+            var query = await ApplyHomeFilterAsync();
+            Console.WriteLine(title);
+            if (!title.IsNullOrWhiteSpace())
+            {
+                query = query.Where(x => x.Title.ToUpper().Contains(title.ToUpper()));
+            }
+
+            return await query
+                .OrderBy(!string.IsNullOrWhiteSpace(sorting)
+                    ? sorting
+                    : nameof(Trip.Title))
+                .PageBy(skipCount, maxResultCount)
+                .ToListAsync(GetCancellationToken(cancellationToken));
         }
     }
 }

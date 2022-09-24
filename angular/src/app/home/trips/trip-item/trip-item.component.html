@@ -12,7 +12,11 @@
     alt=""
     loading="lazy"
   />
-<mat-progress-bar mode="indeterminate" class="h-0 absolute bottom-1" *ngIf="loading"></mat-progress-bar>
+  <mat-progress-bar
+    mode="indeterminate"
+    class="h-0 absolute bottom-1"
+    *ngIf="loading"
+  ></mat-progress-bar>
 </div>
 <div class="flex flex-row h-0 px-2 relative -top-5">
   <mat-chip-list aria-label="Fish selection" (click)="$event.preventDefault()">
@@ -24,7 +28,7 @@
 
   <mat-chip-list aria-label="Fish selection" (click)="$event.preventDefault()">
     <mat-chip class="bg-gradient-to-r from-pink-500 to-yellow-500 text-white shadow">{{
-      getEnumDiff(trip.difficulty)
+      trip.difficulty
     }}</mat-chip>
   </mat-chip-list>
 </div>
@@ -32,8 +36,8 @@
   <span class="font-bold text-lg text-slate-700 line-clamp-1">{{ trip.title }} </span>
   <!-- <span>Visit Ziama </span> -->
   <span class="font-semibold text-sm">
-    {{ trip.duration }} {{ getEnumDuration(trip.durationUnit) }}</span
-  >
+    {{ trip.duration }}
+  </span>
 </div>
 <div class="flex flex-row px-2 py-1 gap-1">
   <app-rating-stars [rate]="trip.rating"></app-rating-stars>

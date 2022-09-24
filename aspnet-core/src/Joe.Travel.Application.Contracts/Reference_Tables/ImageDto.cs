@@ -5,6 +5,10 @@ namespace Joe.Travel
 {
     public class ImageDto : EntityDto<Guid>
     {
-        public byte[] PictureData { get; set; }
+        // public Guid TripId { get; set; }
+
+        // public string DescriptionRr { get; set; }
+
+        public byte[] PictureData { get; set; }=null;
     }
 }

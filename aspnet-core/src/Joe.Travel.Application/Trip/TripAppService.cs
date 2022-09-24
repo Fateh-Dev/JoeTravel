@@ -48,7 +48,7 @@ namespace Joe.Travel
             IRepository<Loging, Guid> logingepository,
             IRepository<IncludedStuff, Guid> includedStuffRepository,
             IRepository<RequiredStuff, Guid> requiredStuffRepository
-            // IRepository<Image, Guid> imageRepository
+        // IRepository<Image, Guid> imageRepository
         )
         {
             _tripManager = tripManager;
@@ -75,6 +75,20 @@ namespace Joe.Travel
             var totalCount = await _tripRepository.CountAsync();
             return new PagedResultDto<TripDto>(totalCount,
                 ObjectMapper.Map<List<TripWithDetails>, List<TripDto>>(trips));
+        }
+
+        public async Task<PagedResultDto<TripDto>>
+        GetHomeListAsync(TripGetListInput input)
+        {
+            var trips =
+                await _tripRepository
+                    .GetHomeListAsync(input.Sorting,
+                    input.SkipCount,
+                    input.MaxResultCount,
+                    input.Title);
+            var totalCount = await _tripRepository.CountAsync();
+            return new PagedResultDto<TripDto>(totalCount,
+                ObjectMapper.Map<List<TripWithOutDetails>, List<TripDto>>(trips));
         }
 
         public async Task CreateAsync(CreateUpdateTripDto input)
@@ -200,6 +214,7 @@ namespace Joe.Travel
             var required = await _requiredStuffRepository.GetListAsync();
             var loging = await _logingRepository.GetListAsync();
             var included = await _includedStuffRepository.GetListAsync();
+            var guides = await _guideRepository.GetListAsync();
             Lookups L =
                 new Lookups()
                 {
@@ -234,10 +249,16 @@ namespace Joe.Travel
                         ObjectMapper
                             .Map
                             <List<IncludedStuff>, List<IncludedStuffLookupDto>
-                            >(included)
+                            >(included),
+                    Guides =
+                        ObjectMapper
+                            .Map
+                            <List<Guide>, List<GuideLookupDto>
+                            >(guides)
                 };
             return L;
         }
+
 
         // public async Task<ListResultDto<ImageDto>> GetTripPictures()
         // {

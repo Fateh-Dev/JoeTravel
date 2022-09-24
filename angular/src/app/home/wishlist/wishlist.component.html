@@ -3,12 +3,12 @@
 <div class="flex flex-row gap-2 px-5">
   <div class="basis-1/5 flex flex-col"></div>
   <div class="basis-4/5 flex flex-col">
-    <app-search-field  (newItemEvent)="searchTrips($event)"></app-search-field>
+    <app-search-field (newItemEvent)="searchTrips($event)"></app-search-field>
   </div>
 </div>
 <div class="flex flex-row gap-2 px-5">
   <div class="basis-1/5 py-2 flex flex-col">
-    <mat-accordion class="example-headers-align sticky top-16 z-50 " multi>
+    <mat-accordion class="example-headers-align sticky top-16 z-50" multi>
       <mat-expansion-panel class="bg-white/0 shadow-none border m-1">
         <mat-expansion-panel-header class="h-9">
           <mat-panel-title class="text-emerald-700"> Duration</mat-panel-title>
@@ -45,7 +45,7 @@
         <span class="example-list-section">
           <ul>
             <li class=" " *ngFor="let i of [0, 1, 2]" (click)="getTripsByDifficulty(i)">
-              <mat-checkbox class="text-emerald-700">{{ getEnumDiff(i) }} </mat-checkbox>
+              <mat-checkbox class="text-emerald-700">==========</mat-checkbox>
             </li>
           </ul>
         </span>

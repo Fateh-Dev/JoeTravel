@@ -31,7 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgbDropdownModule,
     NgxValidateCoreModule,
     BrowserModule,
-    MaterialModule,
+    // MaterialModule,
     ReactiveFormsModule,
   ],
   providers: []

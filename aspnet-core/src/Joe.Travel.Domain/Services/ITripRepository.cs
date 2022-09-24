@@ -15,8 +15,15 @@ namespace Joe.Travel
             int maxResultCount,
             CancellationToken cancellationToken = default
         );
+        Task<List<TripWithOutDetails>> GetHomeListAsync(
+            string sorting,
+            int skipCount,
+            int maxResultCount,
+            string title,
+            CancellationToken cancellationToken = default
+        );
 
         Task<TripWithDetails> GetAsync(Guid id, CancellationToken cancellationToken = default);
-        
+
     }
 }
