@@ -41,7 +41,7 @@ export class HomeComponent {
 
   ngOnInit() {
     this.loading = true;
-    this.tripService.getHomeList({ maxResultCount: 5, skipCount: 0 }).subscribe(e => {
+    this.tripService.getHomeList({ maxResultCount: 6, skipCount: 0 }).subscribe(e => {
       this.items = e.items;
       this.a = e.items;
       this.loading = false;

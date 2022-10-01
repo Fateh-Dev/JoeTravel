@@ -91,6 +91,23 @@ namespace Joe.Travel
                 ObjectMapper.Map<List<TripWithOutDetails>, List<TripDto>>(trips));
         }
 
+        public async Task<PagedResultDto<TripDto>>
+        GetWishlistAsync(TripGetListInput input)
+        {
+            var trips =
+                await _tripRepository
+                    .GetHomeListAsync(input.Sorting,
+                    input.SkipCount,
+                    input.MaxResultCount,
+                    input.Title);
+            var totalCount = await _tripRepository.CountAsync();
+            return new PagedResultDto<TripDto>(totalCount,
+                ObjectMapper.Map<List<TripWithOutDetails>, List<TripDto>>(trips));
+        }
+
+
+
+
         public async Task CreateAsync(CreateUpdateTripDto input)
         {
             await _tripManager

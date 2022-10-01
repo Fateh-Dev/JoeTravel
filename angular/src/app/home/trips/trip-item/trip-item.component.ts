@@ -1,6 +1,6 @@
 import { mapEnumToOptions } from '@abp/ng.core/public-api';
 import { Component, Input, OnInit } from '@angular/core';
-import { difficultyOptions, durationUnitOptions, TripDto } from '@proxy'; 
+import { difficultyOptions, durationUnitOptions, TripDto } from '@proxy';
 import { Directive, ElementRef } from '@angular/core';
 
 @Directive({ selector: 'img' })
@@ -16,22 +16,22 @@ export class LazyImgDirective {
 @Component({
   selector: 'app-trip-item',
   templateUrl: './trip-item.component.html',
-  styleUrls: ['./trip-item.component.scss']
+  styleUrls: ['./trip-item.component.scss'],
 })
 export class TripItemComponent implements OnInit {
   @Input()
-  trip: TripDto
+  trip: TripDto;
   @Input()
-  loading
+  loading;
+  @Input()
+  url;
 
-  constructor() { }
+  constructor() {}
   getEnumDiff(a) {
-    return difficultyOptions.find(e => e.value == a).key
+    return difficultyOptions.find(e => e.value == a).key;
   }
   getEnumDuration(a) {
-    return durationUnitOptions.find(e => e.value == a).key
+    return durationUnitOptions.find(e => e.value == a).key;
   }
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
