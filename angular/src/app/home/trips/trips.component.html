@@ -3,49 +3,55 @@
   <div class="flex flex-row gap-2 px-5">
     <div class="basis-1/5 flex flex-col"></div>
     <div class="basis-4/5 flex flex-col">
-      <app-search-field (newItemEvent)="searchTrips($event)"  ></app-search-field>
+      <app-search-field (newItemEvent)="searchTrips($event)"></app-search-field>
     </div>
   </div>
   <div class="flex flex-row gap-2 px-5">
     <div class="basis-1/5 py-2 flex flex-col">
-      <mat-accordion class="example-headers-align  sticky top-16 z-50 " multi>
-        <mat-expansion-panel class="bg-white/0 shadow-none border m-1">
+      <mat-accordion class="example-headers-align sticky top-16 z-50">
+        <mat-expansion-panel class="shadow-none border m-1 bg-white">
           <mat-expansion-panel-header class="h-9">
-            <mat-panel-title class="text-emerald-700"> Duration</mat-panel-title>
+            <mat-panel-title class="text-emerald-900 font-bold text-lg"> Duration</mat-panel-title>
           </mat-expansion-panel-header>
 
           <span class="example-list-section">
             <ul>
-              <li class=" " *ngFor="let i of [1, 2, 3, 4]">
-                <mat-checkbox class="text-emerald-700"> 2 - 4 Hours </mat-checkbox>
+              <li class=" " *ngFor="let i of ['Short Trips', 'Medium Trips', 'Long Trips']">
+                <mat-checkbox class="text-emerald-700"> {{ i }}</mat-checkbox>
               </li>
             </ul>
           </span>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="bg-white/0 shadow-none border m-1">
+        <mat-expansion-panel class="shadow-none border m-1 bg-white">
           <mat-expansion-panel-header class="h-9">
-            <mat-panel-title class="text-emerald-700"> Rating</mat-panel-title>
+            <mat-panel-title class="text-emerald-900 font-bold text-lg"> Rating</mat-panel-title>
           </mat-expansion-panel-header>
           <span class="example-list-section">
             <ul>
               <li class=" " *ngFor="let i of [1, 2, 3, 4, 5]" (click)="getTripsByRating(i)">
                 <mat-checkbox class="text-emerald-700">
-                  {{ i }}
+                  {{ i }} Star{{ i == 1 ? '' : 's' }}
                 </mat-checkbox>
               </li>
             </ul>
           </span>
         </mat-expansion-panel>
 
-        <mat-expansion-panel class="bg-white/0 shadow-none border m-1">
+        <mat-expansion-panel class="shadow-none border m-1 bg-white">
           <mat-expansion-panel-header class="h-9">
-            <mat-panel-title class="text-emerald-700"> Difficulty</mat-panel-title>
+            <mat-panel-title class="text-emerald-900 font-bold text-lg">
+              Difficulty</mat-panel-title
+            >
           </mat-expansion-panel-header>
           <span class="example-list-section">
             <ul>
-              <li class=" " *ngFor="let i of [0, 1, 2]" (click)="getTripsByDifficulty(i)">
-                <mat-checkbox class="text-emerald-700">-------</mat-checkbox>
+              <li
+                class=" "
+                *ngFor="let i of ['Easy', 'Medium', 'Hard']"
+                (click)="getTripsByDifficulty(i)"
+              >
+                <mat-checkbox class="text-emerald-700">{{ i }}</mat-checkbox>
               </li>
             </ul>
           </span>
@@ -58,7 +64,7 @@
         [routerLink]="'/trips/trip-details/' + item.id"
         class="bg-white rounded-md basis-1/5 flex-1 border pb-2 overflow-hidden border-myPrimaryColor cursor-pointer hover:shadow-lg"
       >
-      <app-trip-item [trip]="item" [loading]="_loading"></app-trip-item>
+        <app-trip-item [trip]="item" [loading]="_loading"></app-trip-item>
       </div>
 
       <div *ngFor="let item of [1, 2, 3, 4]" class="basis-1/5 flex-1"></div>

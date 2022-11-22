@@ -16,7 +16,6 @@ namespace Joe.Travel
 
         public string Duration { get; set; }
 
-        public byte[] Thumbnail { get; set; }
 
         public string TripSize { get; set; }
 
@@ -34,6 +33,7 @@ namespace Joe.Travel
 
         public string[] NotSuitableForNames { get; set; }
 
-        public string[] RequiredStuffNames { get; set; } 
+        public string[] RequiredStuffNames { get; set; }
+        public byte[] Thumbnail { get; set; }
     }
 }

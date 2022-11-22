@@ -33,14 +33,13 @@ export class TripsComponent implements OnInit {
   //     this.items = this.items.concat(e);
   //   });
   // }
-  // getTripsByRating(rate) {
-  //   this.filter.rating = rate;
-  //   this.getTrips();
-  // }
-  // getTripsByDifficulty(difficulty) {
-  //   this.filter.difficulty = difficulty;
-  //   this.getTrips();
-  // }
+  getTripsByRating(rate) {
+    console.log(rate)
+  }
+  getTripsByDifficulty(difficulty) {
+    // this.filter.diff
+    console.log(difficulty)
+  }
   getTrips(title?: string) {
     this.loading = true;
     console.log(title);
