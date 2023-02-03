@@ -18,58 +18,132 @@
     </div>
   </div>
   <div class="flex flex-row h-80 mx-4 bg-black rounded-md opacity-10">
-    <div>
-      <!-- <img
-        *ngIf="tripItem"
-        [src]="'data:image/png;base64,' + tripItem.thumbnail"
-        class="w-full h-full"
-      /> -->
-    </div>
-    <div class="flex flex-col gap-3">ddd</div>
+    <div></div>
+
+    <div class="flex flex-col gap-3"></div>
   </div>
-  <div class="p-10 text-lg">
-    <div>
-      <h1>Trip Description</h1>
-      <h2>{{ tripItem.description }}</h2>
+  <div class="flex flex-row gap-4 m-4">
+    <div class="basis-8/12 flex-col text-lg">
+      <div>
+        <!-- <h2 class="text-slat">Trip Description</h2> -->
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ tripItem.description }}</p>
+      </div>
     </div>
-    <h1>About this Trip</h1>
-    <div>
-      <h2><mat-icon>history</mat-icon> Trip Activities</h2>
-      <ul>
-        <li *ngFor="let i of tripItem.activitiesList">{{ i }}</li>
-      </ul>
-    </div>
-    <div>
-      <h1>Not Suitable For</h1>
-      <ul>
-        <li *ngFor="let i of tripItem.notSuitableForList">{{ i }}</li>
-      </ul>
-    </div>
-    <div>
-      <h1>Included Stuff</h1>
-      <ul>
-        <li *ngFor="let i of tripItem.includedStuffList">{{ i }}</li>
-      </ul>
-    </div>
-    <div>
-      <h1>Required Stuff</h1>
-      <ul>
-        <li *ngFor="let i of tripItem.requiredStuffList">{{ i }}</li>
-      </ul>
-    </div>
-    <div>
-      <h1>Risks</h1>
-      <ul>
-        <li *ngFor="let i of tripItem.risksList">{{ i }}</li>
-      </ul>
-    </div>
-    <div>
-      <h1>Loging</h1>
-      <ul>
-        <li *ngFor="let i of tripItem.logingList">{{ i }}</li>
-      </ul>
+    <div class="basis-4/12 h-32 w-auto bg-white rounded-lg shadow-sm flex flex-col">
+      <span class="flex h-3/5"
+        ><span class="m-auto text-2xl"
+          >From 80$<span class="text-lg px-2">Per Person</span></span
+        ></span
+      >
+      <span
+        class="flex col-end-12 bg-green-500 h-2/5 rounded-b-lg text-white font-bold text-3xl bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 hover:cursor-pointer"
+      >
+        <span class="m-auto">Book Now</span></span
+      >
     </div>
   </div>
 
-  <!-- <pre> {{ tripItem | json }}</pre> -->
+  <div class="mx-4">
+    <h2>
+      <span class="material-symbols-outlined text-3xl font-bold align-middle">
+        Sentiment_neutral
+      </span>
+      <span class="p-2 text-slate-700">Difficulty : {{ tripItem.difficulty }}</span>
+    </h2>
+    <h2>
+      <span class="material-symbols-outlined text-3xl font-bold align-middle"> Timer </span>
+      <span class="p-2 text-slate-700">Duration : {{ tripItem.duration }}</span>
+    </h2>
+    <h2>
+      <span class="material-symbols-outlined text-3xl font-bold align-middle"> Person </span>
+      <span class="p-2 text-slate-700">Size : {{ tripItem.tripSize }} </span>
+    </h2>
+    <h2>
+      <span class="material-symbols-outlined text-3xl font-bold align-middle">
+        Directions_bus
+      </span>
+      <span class="p-2 text-slate-700">Transportation : by Bus</span>
+    </h2>
+  </div>
+  <div class="mx-4">
+    <h2>
+      <span class="material-symbols-outlined text-3xl font-bold align-middle">
+        mode_of_travel
+      </span>
+      <span class="p-2">Itinerary</span>
+    </h2>
+  </div>
+  <div class="flex flex-row gap-4 m-4 shadow-sm rounded-lg p-4 bg-white">
+    <div class="text-center basis-1/4 flex flex-col">
+      <span class="material-symbols-outlined text-5xl font-bold text-myPrimaryColor">
+        location_on
+      </span>
+      <span class="p-2 font-bold text-xl text-myPrimaryColor">Jijel</span>
+    </div>
+    <div class="text-center basis-1/4 flex flex-col">
+      <span class="material-symbols-outlined text-5xl font-bold"> location_on </span>
+      <span class="p-2 font-bold text-xl">Ziama</span>
+    </div>
+    <div class="text-center basis-1/4 flex flex-col">
+      <span class="material-symbols-outlined text-5xl font-bold"> location_on </span>
+      <span class="p-2 font-bold text-xl">Bejaia</span>
+    </div>
+    <div class="text-center basis-1/4 flex flex-col">
+      <span class="material-symbols-outlined text-5xl font-bold"> location_on </span>
+      <span class="p-2 font-bold text-xl">Yema Gourayha</span>
+    </div>
+  </div>
+  <hr class="mx-4" />
+  <div class="mx-4">
+    <h2>
+      <span class="p-2 text-slate-700">Highlights </span>
+    </h2>
+    <ul class="list-disc">
+      <li class="text-lg">
+        See millions of years of geological history at the UNESCO-Listed Grand Canyon
+      </li>
+      <li class="text-lg">Se logical history at the UNESCO-Listed Grand Canyon</li>
+      <li class="text-lg">Millions of years rand Canyon</li>
+      <li class="text-lg">See millions of t the UNESCO-Listed Grand Canyon</li>
+      <li class="text-lg">See millions of years of geologica and Canyon</li>
+    </ul>
+  </div>
+
+  <hr class="mx-4" />
+  <div class="mx-4">
+    <h2>
+      <span class="p-2 text-slate-700">Includes </span>
+    </h2>
+    <ul class="list-disc">
+      <li class="text-lg" *ngFor="let item of tripItem.includedStuffNames">{{ item }}</li>
+    </ul>
+  </div>
+
+  <hr class="mx-4" />
+  <div class="mx-4">
+    <h2>
+      <span class="p-2 text-slate-700">Not Suitable For </span>
+    </h2>
+    <ul class="list-disc">
+      <li class="text-lg" *ngFor="let item of tripItem.notSuitableForNames">{{ item }}</li>
+      <!-- <li class="text-lg">Wheelchair users</li> -->
+    </ul>
+  </div>
+
+  <hr class="mx-4" />
+  <h2>
+    <span class="p-2 text-slate-700">Explore More Trips</span>
+  </h2>
+  <div class="flex flex-row flex-wrap gap-2 bg-slate-100 py-2 pt-10" *ngIf="!loading">
+    <div
+      *ngFor="let item of items"
+      [routerLink]="'/trips/trip-details/' + item.id"
+      class="bg-white rounded-md flex-1 border pb-2 overflow-hidden border-myPrimaryColor cursor-pointer hover:shadow-lg"
+    >
+      <app-trip-item [trip]="item" [loading]="_loading"></app-trip-item>
+    </div>
+
+    <!-- <div *ngFor="let item of [1, 2, 3, 4]" class="basis-1/5 flex-1"></div> -->
+  </div>
+  <pre> {{ tripItem | json }}</pre>
 </div>
